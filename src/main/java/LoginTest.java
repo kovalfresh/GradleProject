@@ -1,3 +1,4 @@
+import Pages.*;
 import com.codeborne.selenide.Condition;
 import org.openqa.selenium.*;
 import org.testng.annotations.Test;
@@ -6,7 +7,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.*;
-import static org.testng.Assert.assertTrue;
 
 public class LoginTest {
 
@@ -20,6 +20,9 @@ public class LoginTest {
     @Test
     void loginTest() throws InterruptedException {
 
+        LoginPage loginPage = new LoginPage();
+        HomePage homePage = new HomePage();
+
         try {
             basicURL = RunConfig.readFromConfig("basicURL");
             login = RunConfig.readFromConfig("login");
@@ -30,11 +33,21 @@ public class LoginTest {
         }
 
         open(basicURL);
-        $(By.name("loginButton")).shouldBe(Condition.visible);
+        loginPage
+                .getLoginButton()
+                .shouldBe(Condition.visible);
+        loginPage.typeLogin(login);
+        loginPage.typePassword(password);
+        loginPage.clickLoginButton();
+        homePage
+                .getHomepageMarker()
+                .shouldBe(Condition.visible);
+
+        /*$(By.name("loginButton")).shouldBe(Condition.visible);
         $(By.cssSelector("#adminloginform-email")).setValue(login);
         $(By.cssSelector("#adminloginform-password")).setValue(password);
         $(By.name("loginButton")).click();
-        $(By.className("user")).shouldBe(Condition.visible);
+        $(By.className("user")).shouldBe(Condition.visible); */
 
         Thread.sleep(5000);
     }
