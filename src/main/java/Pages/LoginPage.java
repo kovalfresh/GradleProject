@@ -6,27 +6,27 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
 
-    String usernameLocator = "#adminloginform-email";
-    String passwordLocator = "#adminloginform-password";
-    String loginButtonLocator = "loginButton";
+    String usernameField = "#adminloginform-email";
+    String passwordField = "#adminloginform-password";
+    String loginButton = "loginButton";
 
     public LoginPage typeLogin(String login) {
-        $(By.cssSelector(usernameLocator)).setValue(login);
+        $(By.cssSelector(usernameField)).val(login);
         return this;
     }
 
     public LoginPage typePassword(String password) {
-        $(By.cssSelector(passwordLocator)).setValue(password);
+        $(By.cssSelector(passwordField)).val(password);
         return this;
     }
 
     public SelenideElement getLoginButton() {
-        return $(By.name(loginButtonLocator));
+        return $(By.name(loginButton));
     }
 
-    public LoginPage clickLoginButton() {
-        $(By.name(loginButtonLocator)).click();
-        return this;
+    public HomePage clickLoginButton() {
+        $(By.name(loginButton)).click();
+        return new HomePage();
     }
 
 }

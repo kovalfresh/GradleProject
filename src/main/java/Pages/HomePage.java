@@ -6,9 +6,9 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class HomePage {
 
-    String homeLocator = "user";
+    String homepageClassName = "user";
 
     public SelenideElement getHomepageMarker() {
-        return $(By.className(homeLocator));
+        return $(By.className(homepageClassName));
     }
 }
