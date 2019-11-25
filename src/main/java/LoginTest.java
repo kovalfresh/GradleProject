@@ -1,16 +1,13 @@
-import com.codeborne.selenide.Condition;
+import Pages.*;
+import static com.codeborne.selenide.Condition.*;
 import org.openqa.selenium.*;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.Properties;
-
 import static com.codeborne.selenide.Selenide.*;
-import static org.testng.Assert.assertTrue;
 
 public class LoginTest {
 
-    //String basicURL = "http://forge.f-d.com.ua";
     String basicURL;
     String login;
     String password;
@@ -30,11 +27,22 @@ public class LoginTest {
         }
 
         open(basicURL);
-        $(By.name("loginButton")).shouldBe(Condition.visible);
-        $(By.cssSelector("#adminloginform-email")).setValue(login);
-        $(By.cssSelector("#adminloginform-password")).setValue(password);
-        $(By.name("loginButton")).click();
-        $(By.className("user")).shouldBe(Condition.visible);
+
+        LoginPage loginPage = new LoginPage();
+
+        loginPage
+                .getLoginButton()
+                .shouldBe(visible);
+        loginPage
+                .typeLogin(login)
+                .typePassword(password)
+                .clickLoginButton();
+
+        HomePage homePage = loginPage.clickLoginButton();
+
+        homePage
+                .getHomepageMarker()
+                .shouldBe(visible);
 
         Thread.sleep(5000);
     }
