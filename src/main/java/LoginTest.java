@@ -15,7 +15,7 @@ public class LoginTest {
     Properties prop = new Properties();
 
     @Test
-    void loginTest() throws InterruptedException {
+    void loginTest() throws InterruptedException, IOException {
 
         try {
             basicURL = RunConfig.readFromConfig("basicURL");
@@ -26,9 +26,7 @@ public class LoginTest {
             throw new InterruptedException();
         }
 
-        open(basicURL);
-
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = PageFactory.openLoginPage();
 
         loginPage
                 .getLoginButton()
