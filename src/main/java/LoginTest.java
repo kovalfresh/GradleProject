@@ -15,7 +15,7 @@ public class LoginTest {
     Properties prop = new Properties();
 
     @Test
-    void loginTest() throws InterruptedException, IOException {
+    void loginTest() throws InterruptedException {
 
         try {
             basicURL = RunConfig.readFromConfig("basicURL");
