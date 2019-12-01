@@ -4,15 +4,9 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class PageFactory {
 
-    public static LoginPage openLoginPage() throws InterruptedException {
+    public static LoginPage openLoginPage() {
 
-        try {
-            open(RunConfig.getStartURL() + "/auth/login");
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new InterruptedException();
-        }
-
+        open(RunConfig.getStartURL() + "/auth/login");
         return new LoginPage();
     }
 }

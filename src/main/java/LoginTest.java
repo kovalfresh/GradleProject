@@ -23,7 +23,6 @@ public class LoginTest {
             password = RunConfig.readFromConfig("password");
         } catch (IOException e) {
             e.printStackTrace();
-            throw new InterruptedException();
         }
 
         LoginPage loginPage = PageFactory.openLoginPage();
