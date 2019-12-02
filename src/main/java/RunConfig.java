@@ -7,7 +7,6 @@ import java.util.Properties;
 public class RunConfig {
 
     public static String readFromConfig(String stringProp) throws IOException {
-
         Properties prop = new Properties();
         InputStream input = new FileInputStream("src/main/resources/system.properties");
         prop.load(input);
@@ -15,7 +14,6 @@ public class RunConfig {
     }
 
     public static String getStartURL() {
-
         try {
             Properties prop = new Properties();
             InputStream input = new FileInputStream("src/main/resources/system.properties");
@@ -23,7 +21,7 @@ public class RunConfig {
             return prop.getProperty("basicURL");
         }  catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return "";
         }
     }
 
