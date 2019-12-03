@@ -1,1 +1,8 @@
 /.idea/
+/build/reports/
+/build/resources/main/
+/build/reports/
+/.gradle/
+/build/
+/out/production/classes/
+/gradle/

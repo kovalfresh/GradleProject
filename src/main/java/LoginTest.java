@@ -23,12 +23,9 @@ public class LoginTest {
             password = RunConfig.readFromConfig("password");
         } catch (IOException e) {
             e.printStackTrace();
-            throw new InterruptedException();
         }
 
-        open(basicURL);
-
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = PageFactory.openLoginPage();
 
         loginPage
                 .getLoginButton()
