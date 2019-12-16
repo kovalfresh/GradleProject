@@ -8,4 +8,9 @@ public class PageFactory {
         open(RunConfig.getStartURL() + "/auth/login");
         return new LoginPage();
     }
+
+    public static ConfigPage openConfigPage() {
+        open(RunConfig.getStartURL() + "/sections/config/list");
+        return new ConfigPage();
+    }
 }
