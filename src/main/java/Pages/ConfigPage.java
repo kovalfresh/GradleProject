@@ -17,20 +17,11 @@ public class ConfigPage {
         return $(By.cssSelector(configPageCSS));
     }
 
-    public static String getConfigTitleFieldTest() {
-        return configTitleFieldTest;
-    }
-
-    public static String getConfigTitleFieldDefault() {
-        return configTitleFieldDefault;
-    }
-
-    public ConfigPage inputSaveCheckConfigValue(String value) throws InterruptedException {
+    public ConfigPage inputSaveConfigValue(String value) {
         $(By.cssSelector(configTitleFieldCSS)).val(value);
         $(By.cssSelector(configSubmitButtonCSS)).click();
-        Thread.sleep(1000);
-        $(By.cssSelector(configTitleFieldCSS)).shouldHave(Condition.value(value));
-        return new ConfigPage();
+        $(By.cssSelector(configTitleFieldCSS)).waitUntil(Condition.value(value), 100);
+        return this;
     }
 
 }

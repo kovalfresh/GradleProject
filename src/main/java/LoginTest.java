@@ -1,11 +1,9 @@
 import Pages.*;
 
 import static com.codeborne.selenide.Condition.*;
-import org.openqa.selenium.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.io.IOException;
-import java.util.Properties;
-import static com.codeborne.selenide.Selenide.*;
 
 public class LoginTest {
 
@@ -13,10 +11,10 @@ public class LoginTest {
         String login;
         String password;
 
-        HomePage homePage;
+    public HomePage homePage;
 
-    @Test
-    void loginTest() throws InterruptedException {
+    @BeforeClass
+    public void loginTest() {
 
         try {
             basicURL = RunConfig.readFromConfig("basicURL");
@@ -41,13 +39,10 @@ public class LoginTest {
         homePage
                 .getHomepageMarker()
                 .shouldBe(visible);
-
-        Thread.sleep(3000);
-
     }
 
-    @Test (priority = 1)
-    void configTest() throws InterruptedException {
+    @Test
+    public void configTest() {
 
         ConfigPage configPage = PageFactory.openConfigPage();
 
@@ -55,10 +50,7 @@ public class LoginTest {
                 .getConfigPageMarker()
                 .shouldBe(visible);
 
-        configPage.inputSaveCheckConfigValue(ConfigPage.getConfigTitleFieldTest());
-        configPage.inputSaveCheckConfigValue(ConfigPage.getConfigTitleFieldDefault());
-
-        Thread.sleep(3000);
-
+        configPage.inputSaveConfigValue(ConfigPage.configTitleFieldTest);
+        configPage.inputSaveConfigValue(ConfigPage.configTitleFieldDefault);
     }
 }
