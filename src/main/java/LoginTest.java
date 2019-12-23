@@ -1,4 +1,4 @@
-import Pages.*;
+import pages.*;
 
 import static com.codeborne.selenide.Condition.*;
 import org.testng.annotations.BeforeClass;
@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class LoginTest {
 
-        String basicURL;
-        String login;
-        String password;
+    private String basicURL;
+    private String login;
+    private String password;
 
     public HomePage homePage;
 

@@ -1,4 +1,4 @@
-import Pages.*;
+import pages.*;
 import java.io.IOException;
 import static com.codeborne.selenide.Selenide.open;
 
