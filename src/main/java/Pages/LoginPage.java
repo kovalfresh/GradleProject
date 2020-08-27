@@ -1,8 +1,9 @@
-package Pages;
+package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.*;
 import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.By.*;
 
 public class LoginPage {
 
@@ -11,21 +12,21 @@ public class LoginPage {
     String loginButton = "loginButton";
 
     public LoginPage typeLogin(String login) {
-        $(By.cssSelector(usernameField)).val(login);
+        $(cssSelector(usernameField)).val(login);
         return this;
     }
 
     public LoginPage typePassword(String password) {
-        $(By.cssSelector(passwordField)).val(password);
+        $(cssSelector(passwordField)).val(password);
         return this;
     }
 
     public SelenideElement getLoginButton() {
-        return $(By.name(loginButton));
+        return $(name(loginButton));
     }
 
     public HomePage clickLoginButton() {
-        $(By.name(loginButton)).click();
+        $(name(loginButton)).click();
         return new HomePage();
     }
 

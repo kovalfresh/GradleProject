@@ -13,4 +13,15 @@ public class PageFactory {
         open(RunConfig.getStartURL() + "/sections/config/list");
         return new ConfigPage();
     }
+
+
+    public static AdminCreatePage openAdminCreatePage() {
+        open(RunConfig.getStartURL() + "/sections/administrator/admin/create");
+        return new AdminCreatePage();
+    }
+
+    public static AdminTablePage openAdminTablePage() {
+        open(RunConfig.getStartURL() + "/sections/administrator/admin/table");
+        return new AdminTablePage();
+    }
 }

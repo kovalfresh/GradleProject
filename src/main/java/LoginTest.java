@@ -1,3 +1,4 @@
+import javafx.scene.layout.Priority;
 import pages.*;
 
 import static com.codeborne.selenide.Condition.*;
@@ -41,7 +42,7 @@ public class LoginTest {
                 .shouldBe(visible);
     }
 
-    @Test
+    @Test //( enabled=false )
     public void configTest() {
 
         ConfigPage configPage = PageFactory.openConfigPage();
@@ -52,5 +53,28 @@ public class LoginTest {
 
         configPage.inputSaveConfigValue(ConfigPage.configTitleFieldTest);
         configPage.inputSaveConfigValue(ConfigPage.configTitleFieldDefault);
+    }
+
+    @Test //(priority=1)
+    public void adminCreateTest() {
+
+        AdminCreatePage adminCreatePage = PageFactory.openAdminCreatePage();
+        adminCreatePage.adminCreateFillForm();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        AdminTablePage adminTablePage = PageFactory.openAdminTablePage();
+
+        adminTablePage
+                .getAdminTableMarker()
+                .shouldBe(visible);
+
+        adminTablePage.checkNewAdmin();
+        adminTablePage.deleteNewAdmin();
+
     }
 }
