@@ -10,18 +10,23 @@ public class ConfigPage {
     private String configPageCSS = "div.row.page-tit > h2";
     private String configTitleFieldCSS = "#configsectionmodel-main___site__title";
     private String configSubmitButtonCSS = "a.btn.btn-green.btn-submit";
-    public static String configTitleFieldTest = "autotitle";
-    public static String configTitleFieldDefault = "Название сайта";
+    private String configTitleFieldDefault = "Название сайта";
 
     public SelenideElement getConfigPageMarker() {
         return $(cssSelector(configPageCSS));
     }
 
+    public SelenideElement getConfigTitleField() { return  $(cssSelector(configTitleFieldCSS)); }
+
     public ConfigPage inputSaveConfigValue(String value) {
         $(cssSelector(configTitleFieldCSS)).val(value);
         $(cssSelector(configSubmitButtonCSS)).click();
-        $(cssSelector(configTitleFieldCSS)).waitUntil(Condition.value(value), 100);
+        $(cssSelector(configTitleFieldCSS)).waitUntil(Condition.value(value), 1000);
         return this;
+    }
+
+    public String getConfigTitleFieldDefault() {
+        return configTitleFieldDefault;
     }
 
 }
