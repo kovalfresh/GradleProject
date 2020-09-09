@@ -15,6 +15,7 @@ dependencies {
     compile group: 'org.testng', name: 'testng', version: '7.0.0'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
     compile group: 'com.codeborne', name: 'selenide', version: '5.5.0'
+    compile group: 'io.rest-assured', name: 'rest-assured', version: '3.2.0'
 }
 
 test {

@@ -21,12 +21,10 @@ public class ConfigPage {
     public ConfigPage inputSaveConfigValue(String value) {
         $(cssSelector(configTitleFieldCSS)).val(value);
         $(cssSelector(configSubmitButtonCSS)).click();
-        $(cssSelector(configTitleFieldCSS)).waitUntil(Condition.value(value), 1000);
+        $(cssSelector(configTitleFieldCSS)).waitUntil(Condition.exactValue(value), 1000);
         return this;
     }
 
-    public String getConfigTitleFieldDefault() {
-        return configTitleFieldDefault;
-    }
+    public String getConfigTitleFieldDefault() { return configTitleFieldDefault; }
 
 }

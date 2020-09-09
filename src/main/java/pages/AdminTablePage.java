@@ -12,18 +12,15 @@ public class AdminTablePage {
     private String createButtonCSS = "btn.btn-green";
     private String newAdmin = "testFirst testLast";
     private String newAdminLoc = "//a[contains(text(),'testFirst testLast')]";
-    private String deleteScript = "http://forge.f-d.com.ua/sections/administrator/admin/delete/";
-    public SelenideElement getAdminTableMarker() {
-        return $(xpath(markerXPath));
-    }
+    private String deleteURI = "http://forge.f-d.com.ua/sections/administrator/admin/delete/";
 
-    public void checkNewAdmin() {
-        $(xpath(newAdminLoc)).waitUntil(Condition.visible, 10000);
-    }
+    public SelenideElement getAdminTableMarker() { return $x(markerXPath); }
+
+    public void checkNewAdmin() { $x(newAdminLoc).waitUntil(Condition.visible, 10000); }
 
     public void deleteNewAdmin() {
-        String AdminLink = $(xpath(newAdminLoc)).getAttribute("href");
-        String AdminId = AdminLink.substring(AdminLink.lastIndexOf("/") + 1);
-        open(deleteScript + AdminId);
+        String adminLink = $x(newAdminLoc).getAttribute("href");
+        String adminId = adminLink.substring(adminLink.lastIndexOf("/") + 1);
+        open(deleteURI + adminId);
     }
 }

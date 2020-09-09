@@ -32,15 +32,15 @@ public class AdminCreatePage {
     }
 
     public AdminCreatePage adminCreateFillForm() {
-        $(xpath(emailField)).val(email);
-        $(xpath(passField)).val(pass);
-        $(xpath(nameField)).val(name);
-        $(xpath(surnField)).val(surn);
-        $(xpath(checkboxField)).click();
-        $(xpath(rightsField)).click();
-        $(xpath(superAdminCheckboxField)).click();
-        $(xpath(submitField)).click();
-        $(xpath(checkboxField)).waitUntil(Condition.enabled, 1000);
+        $x(emailField).val(email);
+        $x(passField).val(pass);
+        $x(nameField).val(name);
+        $x(surnField).val(surn);
+        $x(checkboxField).click();
+        $x(rightsField).click();
+        $x(superAdminCheckboxField).click();
+        $x(submitField).click();
+        $x(checkboxField).waitUntil(Condition.enabled, 1000);
         return this;
     }
 }

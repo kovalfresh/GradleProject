@@ -20,6 +20,6 @@ public class AuthService {
 
         homePage
                 .getHomepageMarker()
-                .waitUntil( visible, 1000 );
+                .shouldBe(visible);
     }
 }

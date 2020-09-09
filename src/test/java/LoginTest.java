@@ -1,66 +1,38 @@
 import static com.codeborne.selenide.Condition.*;
 
-import com.codeborne.selenide.Condition;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import other.PageFactory;
-import other.RunConfig;
+import com.codeborne.selenide.WebDriverRunner;
+import org.testng.annotations.*;
 import pages.*;
 import services.AuthService;
+import other.PageFactory;
 
-public class LoginTest extends BasicTestExecutor{
+import static com.codeborne.selenide.Condition.visible;
 
-    private ConfigPage configPage;
+public class LoginTest extends BasicTestExecutor {
 
     @BeforeClass
-    public void beforeClass() {
-        AuthService.login(login, password);
-        configPage = PageFactory.openConfigPage();
+    public void BeforeClass() {
+        WebDriverRunner.clearBrowserCache();
     }
 
-    @AfterClass
-    public void afterClass() {
-        configPage.inputSaveConfigValue(configPage.getConfigTitleFieldDefault());
-    }
+    @Test
+    public void loginTest() {
 
-    @Test( enabled=false )
-    public void configTest() {
+        LoginPage loginPage = PageFactory.openLoginPage();
 
-        configPage
-                .getConfigPageMarker()
+        loginPage
+                .getLoginButton()
                 .shouldBe(visible);
 
-        String configTitleFieldTest = "autotitle";
+        loginPage
+                .typeLogin( login )
+                .typePassword( password )
+                .clickLoginButton();
 
-        configPage.inputSaveConfigValue(configTitleFieldTest);
+        HomePage homePage = loginPage.clickLoginButton();
 
-        configPage
-                .getConfigTitleField()
-                .shouldHave(exactText(configTitleFieldTest));
-
-    }
-
-    @Test(priority=1)
-    public void adminCreateTest() {
-
-        AdminCreatePage adminCreatePage = PageFactory.openAdminCreatePage();
-        adminCreatePage.adminCreateFillForm();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        AdminTablePage adminTablePage = PageFactory.openAdminTablePage();
-
-        adminTablePage
-                .getAdminTableMarker()
+        homePage
+                .getHomepageMarker()
                 .shouldBe(visible);
-
-        adminTablePage.checkNewAdmin();
-        adminTablePage.deleteNewAdmin();
-
     }
 }
