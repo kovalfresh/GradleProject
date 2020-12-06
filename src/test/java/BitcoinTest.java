@@ -1,20 +1,19 @@
-import org.testng.Assert;
 import org.testng.annotations.*;
 import other.BitcoinService;
 import other.BlockchainService;
-
-import static other.BitcoinTestComparator.bitcoinTestComparator;
+import java.util.ArrayList;
+import static org.testng.Assert.assertTrue;
+import static other.BitcoinTestComparator.isDiffWithinQuota;
 
 public class BitcoinTest {
 
     @Test
     public void BitcoinTest() {
-
         BitcoinService bitcoinService = new BitcoinService();
-        bitcoinService.getListOfAverages();
         BlockchainService blockchainService = new BlockchainService();
-        blockchainService.getListOfY();
-        Assert.assertEquals(bitcoinTestComparator(bitcoinService.getListOfAverages(), blockchainService.getListOfY()), true, "Test failed!");
+        ArrayList bitcoinAverages = bitcoinService.getListOfBitcoinAverages();
+        ArrayList blockchainAverages = blockchainService.getListOfBlockchainAverages();
 
+        assertTrue(isDiffWithinQuota(bitcoinAverages, blockchainAverages), "Diff exceeds the quota");
     }
 }
